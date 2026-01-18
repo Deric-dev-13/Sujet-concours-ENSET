@@ -1,6 +1,6 @@
 {
   "name": "ENSET Elite",
-  "short_name": "CONCOURS ENSET App",
+  "short_name": "SUJET CONCOURS",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
