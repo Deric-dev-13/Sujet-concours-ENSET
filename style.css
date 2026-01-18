@@ -1,0 +1,354 @@
+        /* =========================================
+           1. VARIABLES & THEMES
+           ========================================= */
+        :root {
+            --nav-height: 70px;
+            --gold: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            --tech-blue: #0ea5e9;
+            --success: #10b981;
+            --mvola: #009845;
+            --orange: #ff7900;
+        }
+
+        :root[data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-panel: #1e293b;
+            --bg-input: #020617;
+            --border: rgba(255,255,255,0.1);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --shadow: rgba(0,0,0,0.6);
+            --card-hover: #2d3748;
+        }
+
+        :root[data-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-panel: #ffffff;
+            --bg-input: #e2e8f0;
+            --border: #cbd5e1;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --shadow: rgba(0,0,0,0.1);
+            --card-hover: #f1f5f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding-top: var(--nav-height);
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           2. ANNONCES "FANTASTIQUES"
+           ========================================= */
+        .ticker-wrap {
+            width: 100%; overflow: hidden;
+            /* Dégradé animé puissant */
+            background: linear-gradient(270deg, #b91c1c, #d97706, #15803d, #1d4ed8, #b91c1c);
+            background-size: 800% 800%;
+            animation: rainbowMove 15s ease infinite;
+            padding: 10px 0;
+            box-shadow: 0 5px 15px var(--shadow);
+            position: relative; z-index: 5;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes rainbowMove { 
+            0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% }
+        }
+
+        .ticker { display: inline-block; white-space: nowrap; animation: scrollTicker 40s linear infinite; }
+        .ticker:hover { animation-play-state: paused; }
+
+        @keyframes scrollTicker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        .ticker-item {
+            display: inline-block; padding: 0 30px;
+            color: #fff; font-weight: 700; font-size: 1.05rem;
+            text-transform: uppercase; text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+        .ticker-item:hover { transform: scale(1.1); color: #fff; text-shadow: 0 0 10px #fff; }
+
+        /* =========================================
+           3. HEADER
+           ========================================= */
+        header {
+            position: fixed; top: 0; width: 100%; height: var(--nav-height);
+            background: var(--bg-panel); border-bottom: 2px solid var(--gold);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; z-index: 1000; box-shadow: 0 5px 20px var(--shadow);
+        }
+        .logo h1 { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--text-main); margin: 0; }
+        .logo span { color: var(--gold); }
+        .theme-btn {
+            background: transparent; border: 1px solid var(--border); color: var(--text-main);
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .theme-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+        
+       /* Menu Desktop (Caché sur mobile) */
+        .desktop-menu { display: none; gap: 20px; align-items: center; }
+        .desktop-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .desktop-link:hover { color: var(--gold); }
+        
+        .btn-install {
+            background: var(--tech-blue); color: #fff; padding: 8px 15px; border-radius: 4px;
+            text-decoration: none; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 5px;
+            transition: 0.3s; cursor: pointer; border: none;
+        }
+        .btn-install:hover { background: #0284c7; }
+
+        /* Menu Mobile Trigger */
+        .mobile-trigger { font-size: 1.5rem; color: var(--text-main); cursor: pointer; display: block; }
+
+        @media(min-width: 992px) {
+            .desktop-menu { display: flex; }
+            .mobile-trigger { display: none; }
+        }
+
+         /* SIDEBAR MOBILE */
+        .sidebar {
+            position: fixed; top: 0; left: -100%; width: 280px; height: 100vh;
+            background: var(--bg-panel); border-right: 1px solid var(--gold);
+            z-index: 1002; transition: 0.4s; padding: 20px;
+        }
+        .sidebar.active { left: 0; }
+        
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 1001; display: none; backdrop-filter: blur(3px);
+        }
+        .overlay.active { display: block; }
+
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px; padding: 15px 0;
+            color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--border);
+            font-size: 1.1rem;
+        }
+        .sidebar-link:hover { color: var(--gold); padding-left: 10px; }
+
+
+        /* =========================================
+           4. HERO & SEARCH
+           ========================================= */
+      /*  .hero {
+            height: 45vh;
+            background: linear-gradient(to bottom, rgba(15,23,42,0.8), var(--bg-body)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 0 20px;
+        }*/
+      /*  .hero h2 { font-family: 'Cinzel', serif; font-size: 2.2rem; color: #fff; margin-bottom: 10px; text-shadow: 0 5px 10px #000; }
+        .hero p { color: #ccc; font-size: 1rem; max-width: 600px; }*/
+        
+        /* =========================================
+           4. HERO & SLIDER (MODIFIÉ)
+           ========================================= */
+        .hero {
+            height: 50vh; /* Un peu plus grand pour les pubs */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000; /* Fond noir par défaut */
+            margin-bottom: 0; /* Collé à la barre de recherche */
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1s ease-in-out;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 20px;
+            z-index: 1;
+        }
+
+        .hero-slide.active { opacity: 1; z-index: 2; }
+
+        /* Ombre pour rendre le texte lisible sur l'image */
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative; z-index: 3;
+            animation: slideUp 0.8s ease-out;
+            max-width: 800px;
+        }
+
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .hero h2 {
+            font-family: 'Cinzel', serif; font-size: 2.5rem; color: #fff;
+            margin-bottom: 10px; text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            color: #e2e8f0; font-size: 1.1rem; margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-cta {
+            padding: 12px 30px; background: var(--gold); color: #000;
+            font-weight: bold; text-decoration: none; border-radius: 50px;
+            transition: 0.3s; display: inline-block; box-shadow: 0 0 15px var(--gold-glow);
+        }
+        .hero-cta:hover { transform: scale(1.05); background: #fff; }
+
+        /* Contrôles du slider */
+        .hero-controls {
+            position: absolute; bottom: 20px; left: 0; width: 100%;
+            display: flex; justify-content: center; align-items: center; gap: 20px;
+            z-index: 10; pointer-events: none; /* Pour cliquer au travers sauf sur les boutons */
+        }
+        
+        .hero-btn {
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; width: 40px; height: 40px; border-radius: 50%;
+            cursor: pointer; pointer-events: auto; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+
+        .hero-dots { display: flex; gap: 10px; pointer-events: auto; }
+        .dot {
+            width: 10px; height: 10px; background: rgba(255,255,255,0.5);
+            border-radius: 50%; cursor: pointer; transition: 0.3s;
+        }
+        .dot.active { background: var(--gold); transform: scale(1.2); }
+
+        .hero-loader { color: var(--gold); font-size: 2rem; }
+
+        .sticky-bar {
+            position: sticky; top: var(--nav-height); z-index: 900;
+            background: var(--bg-body); padding: 15px 5%;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .search-box { position: relative; margin-bottom: 15px; }
+        .search-input {
+            width: 100%; padding: 12px 20px 12px 45px;
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-radius: 50px; color: var(--text-main); font-size: 1rem; outline: none;
+            transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 10px var(--gold-glow); }
+        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        .filter-scroller {
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none;
+        }
+        .filter-scroller::-webkit-scrollbar { display: none; }
+        
+        .filter-btn {
+            background: var(--bg-panel); color: var(--text-muted);
+            border: 1px solid var(--border); padding: 8px 16px;
+            border-radius: 20px; white-space: nowrap; cursor: pointer;
+            font-weight: 600; font-size: 0.9rem; transition: 0.3s;
+        }
+        .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .filter-btn.active { background: var(--gold); color: #000; border-color: var(--gold); font-weight: bold; }
+
+        /* =========================================
+           5. GRID CARD SYSTEM
+           ========================================= */
+        .container { padding: 30px 5%; min-height: 60vh; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+
+        .card {
+            background: var(--bg-panel); border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border); transition: all 0.3s ease;
+            position: relative; display: flex; flex-direction: column;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px var(--shadow); border-color: var(--gold); }
+
+        .card-header {
+            height: 110px; background: linear-gradient(135deg, var(--bg-input), var(--bg-panel));
+            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid var(--border); position: relative;
+        }
+
+        .card-badge {
+            position: absolute; top: 10px; padding: 3px 10px; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .badge-mention { left: 10px; background: var(--bg-body); color: var(--text-main); border: 1px solid var(--border); }
+        
+        /* Badges Types */
+        .badge-type { right: 10px; color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .type-sujet { background: var(--tech-blue); }
+        .type-corrige { background: linear-gradient(45deg, var(--gold), #f59e0b); color: #000; }
+
+        .card-icon { font-size: 6rem; color: var(--text-muted); opacity: 0.3; transition: 0.3s; }
+        .card:hover .card-icon { opacity: 0.8; color: var(--gold); transform: scale(1.1) rotate(-5deg); }
+
+        .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+        .card-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; font-family: 'Cinzel'; line-height: 1.3; }
+        .card-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
+        .card-price { font-size: 1.3rem; font-weight: bold; color: var(--gold); margin-bottom: 15px; display: block; }
+        
+        .btn-card {
+            width: 100%; padding: 12px; border-radius: 8px; border: none;
+            font-weight: bold; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-card.unlock { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+        .btn-card.unlock:hover { background: var(--gold); color: #000; }
+
+        /* =========================================
+           6. MODAL & FOOTER
+           ========================================= */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; display: none;
+            justify-content: center;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+            align-items: flex-start;; padding: 20px;
+            backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s;
+        }
+        .modal.active { display: flex; opacity: 1; }
+        
+        .modal-content {
+            background: var(--bg-panel); width: 100%; max-width: 700px;
+            padding: 30px; border-radius: 16px; border: 1px solid var(--gold);
+            box-shadow: 0 0 30px var(--gold-glow); position: relative;
+            transform: scale(0.9); transition: transform 0.3s;
+        }
+        .modal.active .modal-content { transform: scale(1); }
+        
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+        
+        .pay-row { display: flex; gap: 10px; margin: 20px 0; }
+        .pay-item { flex: 1; background: var(--bg-input); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+        
+        .upload-box {
+           
+         /*  border: 2px dashed var(--border); border-radius: 8px; padding: 20px;
+            text-align: center; cursor: pointer; background: rgba(212, 175, 55, 0.05);
+            transition: 0.3s; display: flex; flex-direction: column; align-items: center;*/
+           
+            border: 2px dashed var(--border); border-radius: 8px; padding: 20px;
+            text-align: center; margin-bottom: 15px; cursor: pointer; transition: 0.3s; display: flex; flex-direction: Column; align-items: center;
+        }
+        .upload-box:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+
+        .btn-wa { background: #333; color: #fff; width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: not-allowed; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+        .btn-wa.ready { background: #25D366; cursor: pointer; box-shadow: 0 0 15px rgba(37, 211, 102, 0.4); }
+
+        footer { text-align: center; padding: 40px 20px; background: var(--bg-input); border-top: 1px solid var(--gold); margin-top: 50px; color: var(--text-muted); }
