@@ -1,13 +1,13 @@
 {
   "name": "ENSET Elite",
-  "short_name": "ENSET App",
+  "short_name": "CONCOURS ENSET",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#d4af37",
   "icons": [
     {
-      "src": "https://www.facebook.com/61577239424465/posts/pfbid0Wi4962hUnVFeaDJSx89B138ACy9XMVLrXMNyGNehbPapJUocDhtBVsFinGij81MVl/",
+      "src": "1768771715412.jpg",
       "sizes": "192x192",
       "type": "image/png"
     }
