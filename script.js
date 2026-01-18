@@ -2,61 +2,17 @@
     /* =========================================
        1. CONFIGURATION & VARIABLES
        ========================================= */
-    const MOCK_API_SUJETS = "https://67825d02c51d092c3dcf49b3.mockapi.io/sujets"; 
-    const MOCK_API_ANNONCES = "https://67825d02c51d092c3dcf49b3.mockapi.io/annonces";
+    const MOCK_API_SUJETS = "https://696d436ff4a79b315180df20.mockapi.io/V1/Sujet"; 
+    const MOCK_API_ANNONCES = "https://696d45f4f4a79b315180e444.mockapi.io/V1/Anoncesconcours";
     // AJOUT : API PUBLICITÉS
-    const MOCK_API_PUBS = "https://67825d02c51d092c3dcf49b3.mockapi.io/publicites"; 
+    const MOCK_API_PUBS = "https://696d436ff4a79b315180df20.mockapi.io/V1/Pub"; 
     
-    const ADMIN_PHONE = "261340000000"; 
+    const ADMIN_PHONE = "261341108401"; 
 
     /* DONNÉES DE SECOURS (OFFLINE) */
-    const FALLBACK_DATA = [
-            // GMI
-            { id:1, mention:"GMI", title:"Algorithmique & C++", year:"2024", price:"3000 Ar", type:"sujet", icon:"fa-code", link:"#", password:"123" },
-            { id:2, mention:"GMI", title:"Base de Données (Corrigé)", year:"2023", price:"5000 Ar", type:"corrige", icon:"fa-database", link:"#", password:"123" },
-            // GE
-            { id:3, mention:"GE", title:"Électronique de Puissance", year:"2023", price:"3000 Ar", type:"sujet", icon:"fa-bolt", link:"#", password:"123" },
-            { id:4, mention:"GE", title:"Machines Électriques (Corrigé)", year:"2022", price:"4500 Ar", type:"corrige", icon:"fa-plug", link:"#", password:"123" },
-            // GC
-            { id:5, mention:"GC", title:"Résistance des Matériaux", year:"2024", price:"3000 Ar", type:"sujet", icon:"fa-hard-hat", link:"#", password:"123" },
-            // GM
-            { id:6, mention:"GM", title:"Thermodynamique", year:"2023", price:"3000 Ar", type:"sujet", icon:"fa-cogs", link:"#", password:"123" },
-            // STI
-            { id:7, mention:"STI", title:"Réseaux Informatiques", year:"2024", price:"3500 Ar", type:"sujet", icon:"fa-network-wired", link:"#", password:"123" },
-            // SM
-            { id:8, mention:"SM", title:"Analyse Mathématique", year:"2022", price:"2500 Ar", type:"sujet", icon:"fa-square-root-alt", link:"#", password:"123" },
-            // SE & SEE
-            { id:9, mention:"SE", title:"Hydraulique Générale", year:"2023", price:"3000 Ar", type:"sujet", icon:"fa-water", link:"#", password:"123" },
-            { id:10, mention:"SEE", title:"Gestion Environnementale", year:"2023", price:"3000 Ar", type:"sujet", icon:"fa-leaf", link:"#", password:"123" },
-            // Autres
-            { id:11, mention:"Autres", title:"Culture Générale", year:"2024", price:"2000 Ar", type:"sujet", icon:"fa-book-open", link:"#", password:"123" }
-
-    ];
-
-    const FALLBACK_ANNONCES = [
-        { text: "Bienvenue sur ENSET Elite 2026 !", link: "#" },
-        { text: "Nouveaux corrigés GMI 2024 disponibles.", link: "#" }
-    ];
 
     // AJOUT : SECOURS PUBLICITÉS
-    const FALLBACK_PUBS = [
-        {
-            id: 1,
-            image: "deric.jpg",
-            title: "L'EXCELLENCE TECHNIQUE",
-            description: "Accédez aux sujets, corrigés et annales de tous les parcours.",
-            link: "#grid",
-            buttonText: "VOIR LES SUJETS"
-        },
-        {
-            id: 2,
-            image: "enset.jpg",
-            title: "REJOIGNEZ L'ÉLITE",
-            description: "Une préparation intensive pour garantir votre réussite au concours.",
-            link: "#contact",
-            buttonText: "NOUS CONTACTER"
-        }
-    ];
+    
 
     let globalData = [];
     let currentItem = null;
